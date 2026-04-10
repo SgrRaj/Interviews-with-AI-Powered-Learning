@@ -18,7 +18,7 @@ let app=express()    // object ={listen}
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://interviews-with-ai-powered-learning.vercel.app",
+  "https://interviews-with-ai-powered-learning-qvbqaojvd-sgrrajs-projects.vercel.app",
 ];
 
 app.use(
@@ -34,7 +34,11 @@ app.use(
   }),
 );
 
-app.options("*", cors());
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+// app.options("*", cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
