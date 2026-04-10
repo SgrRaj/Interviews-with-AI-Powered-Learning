@@ -16,12 +16,25 @@ dotenv.config();
 //2.call /invoke the function 
 let app=express()    // object ={listen}
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://interviews-with-ai-powered-learning.vercel.app",
+];
+
 app.use(
-    cors({
-    origin: true,
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   }),
 );
 
+app.options("*", cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
