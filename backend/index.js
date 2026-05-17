@@ -18,7 +18,7 @@ let app=express()    // object ={listen}
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://interviews-with-ai-powered-learning-qvbqaojvd-sgrrajs-projects.vercel.app",
+  "https://sgr-backend.vercel.app",
 ];
 
 app.use(
