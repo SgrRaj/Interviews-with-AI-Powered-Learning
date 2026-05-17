@@ -66,6 +66,24 @@ app.get("/",(req,res)=>{
   });
 });
 
+// Handle 404 for undefined routes
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: "Route not found",
+  });
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({
+    success: false,
+    message: "Internal server error",
+    error: err.message,
+  });
+});
+
 connectDB().then(() => {
   const PORT = process.env.PORT || 9000;
   app.listen(PORT,()=>{
