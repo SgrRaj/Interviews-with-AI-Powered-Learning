@@ -15,6 +15,8 @@ const SignUp = () => {
 
   const handleSignup = async () => {
     try {
+      
+      
       await axios.post(API_PATHS.AUTH.SIGNUP, form);
       navigate("/login");
     } catch (error) {
