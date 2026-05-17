@@ -34,6 +34,7 @@ app.use(
   }),
 );
 
+
 // app.options("*", cors({
 //   origin: allowedOrigins,
 //   credentials: true
@@ -47,24 +48,22 @@ app.use("/api/auth", userRoutes); // http:/localhost:9000/api/auth/signup
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/ai", aiRoutes);
 
+// Handle favicon requests
+app.get("/favicon.ico", (req, res) => {
+  res.status(204).end();
+});
+
+app.get("/favicon.png", (req, res) => {
+  res.status(204).end();
+});
+
 //4. declare routes ->app.http_method('endpoint',callback)
 
 app.get("/",(req,res)=>{
-  //req,res ->object
-  
-  //  res.send("welcome");
-//   res.json({
-//     success:true,
-//     message:"okay",
-//     data:{userName: "sagar"},
-//   });
-
-res.status(500).json({
-    success:false,
-    message:"error occured",
-    err:{name:"some error"},
-});
-    
+  res.status(200).json({
+    success:true,
+    message:"API is running successfully",
+  });
 });
 
 connectDB().then(() => {
